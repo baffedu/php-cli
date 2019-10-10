@@ -17,3 +17,7 @@ RUN set x=1 && \
     rm -rf /tmp/* /var/cache/apk/*
 
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+# 运行计划任务
+RUN echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
+CMD [ "crond","-l 2","-f"]
