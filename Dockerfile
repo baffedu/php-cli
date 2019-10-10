@@ -20,4 +20,4 @@ RUN set x=1 && \
 
 # 运行计划任务
 RUN echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
-CMD [ "crond","-l 2","-f"]
+CMD [ "crond","-f"]
