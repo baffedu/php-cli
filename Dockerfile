@@ -13,7 +13,9 @@ RUN set x=1 && \
     docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql bcmath zip opcache && \
     docker-php-ext-enable imagick && \
     docker-php-source delete && \
-    wget https://dl.laravel-china.org/composer.phar -O /usr/local/bin/composer && \
+    wget https://getcomposer.org/installer && \
+    php installer && \
+    mv composer.phar /usr/local/bin/composer && \
     chmod a+x /usr/local/bin/composer && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
