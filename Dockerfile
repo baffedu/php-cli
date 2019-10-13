@@ -13,11 +13,13 @@ RUN set x=1 && \
     docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql bcmath zip opcache && \
     docker-php-ext-enable imagick && \
     docker-php-source delete && \
+    wget https://dl.laravel-china.org/composer.phar -O /usr/local/bin/composer && \
+    chmod a+x /usr/local/bin/composer && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
-# ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 
-# 运行计划任务
-RUN echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
-CMD [ "crond","-f"]
+WORKDIR /var/www/html/
+ENTRYPOINT [ "/bin/sh",'entrypoint.sh']
