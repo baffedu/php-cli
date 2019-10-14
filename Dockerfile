@@ -24,4 +24,4 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod 777 /entrypoint.sh
 
 WORKDIR /var/www/html/
-ENTRYPOINT [ "/bin/sh","entrypoint.sh"]
+ENTRYPOINT [ "/bin/sh","/entrypoint.sh"]
