@@ -19,5 +19,5 @@ RUN set x=1 && \
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # 运行计划任务
-RUN echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
-CMD [ "crond","-f"]
+RUN echo '* * * * * php /var/www/html/artisan schedule:run' > /var/spool/cron/crontabs/root
+CMD [ "crond","-f","-d 6","-L /dev/stdout"]
