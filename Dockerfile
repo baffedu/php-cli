@@ -18,6 +18,8 @@ RUN set x=1 && \
 
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
+WORKDIR /var/www/html
+
 # 运行计划任务
 RUN echo '* * * * * php /var/www/html/artisan schedule:run' > /var/spool/cron/crontabs/root
 CMD [ "crond","-f","-d","6","-L","/dev/stdout"]
