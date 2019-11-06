@@ -16,6 +16,15 @@ RUN set x=1 && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
+
+ENV PHPREDIS_VERSION 3.0.0
+
+RUN mkdir -p /usr/src/php/ext/redis && \
+curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 && \
+echo 'redis' >> /usr/src/php-available-exts && \
+docker-php-ext-install redis && \
+docker-php-source delete
+
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # 运行计划任务
