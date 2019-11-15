@@ -16,6 +16,11 @@ RUN set x=1 && \
     apk del -f .build-deps freetype-dev libpng-dev libjpeg-turbo-dev && \
     rm -rf /tmp/* /var/cache/apk/*
 
+
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Chongqing /etc/localtime && \
+echo "Asia/Chongqing" > /etc/timezone && \
+apk del tzdata
+
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # 运行计划任务
