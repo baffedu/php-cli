@@ -29,4 +29,4 @@ docker-php-source delete
 
 # 运行计划任务
 RUN echo '* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1' > /var/spool/cron/crontabs/root
-CMD [ "crond","-f"]
+CMD [ "crond","-f","-d","6","-L","/dev/stdout"]
