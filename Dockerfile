@@ -17,8 +17,8 @@ RUN set x=1 && \
     rm -rf /tmp/* /var/cache/apk/*
 
 
-RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Chongqing /etc/localtime && \
-echo "Asia/Chongqing" > /etc/timezone && \
+RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+echo "Asia/Shanghai" > /etc/timezone && \
 apk del tzdata
 
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
