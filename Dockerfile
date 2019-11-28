@@ -25,6 +25,10 @@ echo 'redis' >> /usr/src/php-available-exts && \
 docker-php-ext-install redis && \
 docker-php-source delete
 
+RUN apk add -U tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+echo "Asia/Chongqing" > /etc/timezone
+
+
 # ADD ./conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # 运行计划任务
